@@ -12,7 +12,8 @@ namespace lb
 	namespace imgui_impl
 	{
 		void InitializeImGui();
-		void ImGui_StartFrame();
+		void ImGui_StartFrame(const char* v_guiName);
 		void ImGui_EndFrame();
+		LRESULT __stdcall ImWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	}
 }

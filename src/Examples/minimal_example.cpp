@@ -19,9 +19,11 @@ BOOL WINAPI minimal_example(
 	lb::engine.Initialize();
 	lb::engine.SetBackgroundColor({ 0.1, 0.1, 0.1, 1 });
 
+	lb::engine.GetCamera().SetCameraPos({ 0, 0, -1 });
+
 	lb::Rect vRect;
 
-	vRect.SetColor({255, 0, 0, 255});
+	vRect.SetColor({ 255, 0, 0, 255 });
 
 	lb::engine.Run();
 

@@ -28,9 +28,11 @@ BOOL WINAPI ImGui_impl_example(
 
 	try
 	{
-		lb::window.SetWinproc(WndProc);
+		lb::window.SetWinproc(lb::imgui_impl::ImWndProc);
 		lb::engine.Initialize();
 		lb::engine.SetBackgroundColor({ 0.1, 0.1, 0.1, 1 });
+
+		lb::engine.GetCamera().SetCameraPos({ 0, 0, -2 });
 
 		lb::imgui_impl::InitializeImGui();
 
@@ -38,21 +40,18 @@ BOOL WINAPI ImGui_impl_example(
 
 		lb::engine.Run([&vStartTick, &vBox]()
 			{
-				lb::imgui_impl::ImGui_StartFrame();
+				lb::imgui_impl::ImGui_StartFrame("lb ImGui integration");
 
 				static float s = 0.5f;
 				static float rx = 0, ry = 0, rz = 0;
 				static float x = 0, y = 0, z = 0;
 				static bool r = false;
 
-				ImGui::Begin("lb ImGui integration");
-
 				ImGui::Text("lb Demo using ImGui UI controller");
 
 				ImGui::SliderFloat("x", &x, -1.0f, 1.0f);
 				ImGui::SliderFloat("y", &y, -1.0f, 1.0f);
 				ImGui::SliderFloat("z", &z, -1.0f, 1.0f);
-				ImGui::SliderFloat("scale", &s, 0.f, 1.0f);
 
 				if (!r)
 				{
@@ -90,44 +89,7 @@ BOOL WINAPI ImGui_impl_example(
 					}
 				}
 
-				lb::Matrix4f4 vMxRotateX = {
-					{1,		0,			0,			0},
-					{0,		cos(rz),	-sin(rz),	0},
-					{0,		sin(rz),	cos(rz),	0},
-					{0,		0,			0,			1},
-				};
-
-				lb::Matrix4f4 vMxRotateY = {
-					{cos(ry),	0,	sin(ry),	0},
-					{0,			1,	0,			0},
-					{-sin(ry),	0,	cos(ry),	0},
-					{0,			0,	0,			1},
-				};
-
-				lb::Matrix4f4 vMxRotateZ = {
-					{cos(rx),	-sin(rx),	0,	0},
-					{sin(rx),	 cos(rx),	0,	0},
-					{0,			0,			1,	0},
-					{0,			0,			0,	1},
-				};
-
-				lb::Matrix4f4 vMxScale = {
-					{s,	0, 0, 0},
-					{0,	s, 0, 0},
-					{0,	0, s, 0},
-					{0,	0, 0, 1},
-				};
-
-				// Rotation
-				lb::Matrix4f4 vMx = vMxRotateX * vMxRotateY * vMxRotateZ;
-				vMx = vMx * vMxScale;
-
-				// Transform
-				vMx.data[0][3] = x;
-				vMx.data[1][3] = y;
-				vMx.data[2][3] = z;
-
-				vBox.SetTransformMatrix(vMx);
+				vBox.SetTransformMatrix(lb::MXMatrixRotateZ(rz) * lb::MXMatrixRotateY(ry) * lb::MXMatrixRotateX(rx) * lb::MXMatrixTranslate(x, y, z));
 
 				lb::imgui_impl::ImGui_EndFrame();
 			});
@@ -136,19 +98,4 @@ BOOL WINAPI ImGui_impl_example(
 
 	lb::LB_ENGINE_NAME.CleanUp();
 	return 0;
-}
-
-LRESULT __stdcall WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
-{
-	if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
-		return true;
-
-	switch (msg)
-	{
-	case WM_DESTROY:
-		::PostQuitMessage(0);
-		return 0;
-	}
-
-	return ::DefWindowProc(hWnd, msg, wParam, lParam);
 }

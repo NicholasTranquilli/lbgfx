@@ -38,7 +38,7 @@ BOOL WINAPI WinMain(
 
 		if (vTimeStamp > 5000 * 2)
 			vStartTick = std::chrono::high_resolution_clock::now();
-		
+
 		vBox.SetTransformMatrix(lb::MXMatrixRotateZ(rz) * lb::MXMatrixRotateY(ry) * lb::MXMatrixRotateX(rx));
 		lb::sColor4f vColor = { (rx + 1) / 2, (rx + 1) / 2, (rz + 1) / 2, 1.f };
 		vBox.SetColor(vColor);
