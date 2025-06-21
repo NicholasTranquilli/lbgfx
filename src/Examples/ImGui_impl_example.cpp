@@ -1,5 +1,8 @@
 // EXAMPLE PROGRAM
 
+// (required) define macro to compile imgui implementation
+#define LB_USE_IMGUI
+
 // (optional) name change for static global vars macros
 #define LB_WINDOW_NAME window
 #define LB_ENGINE_NAME engine

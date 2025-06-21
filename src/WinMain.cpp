@@ -17,31 +17,24 @@ BOOL WINAPI WinMain(
 )
 {
 	auto vStartTick = std::chrono::high_resolution_clock::now();
+
 	lb::logger.SetConsoleOutput(true);
 	lb::engine.Initialize();
 	lb::engine.SetBackgroundColor({ 0.1f, 0.1f, 0.1f, 1.f });
 
 	lb::engine.GetCamera().SetCameraPos({ 0, 0, -2 });
 
-	lb::Box vBox;
+	lb::String2D v("D:/Resources/test3-lg.otf", "Hello\nWorld!");
+
+	v.SetColor({ 1, 0, 0, 1 });
 
 	while (lb::engine.IsRunning())
 	{
 		lb::engine.StartFrame();
 
-		static float rx = 0, ry = 0, rz = 0;
 		auto vCurrentTick = std::chrono::high_resolution_clock::now().time_since_epoch();
 		long long vTimeStamp = std::chrono::duration_cast<std::chrono::milliseconds>(vCurrentTick - vStartTick.time_since_epoch()).count();
-		rx = sin(vTimeStamp * (lb::pi_f / 5000.f));
-		ry = 2 * sin(vTimeStamp * (lb::pi_f / 5000.f));
-		rz = cos(vTimeStamp * (lb::pi_f / 5000.f));
-
-		if (vTimeStamp > 5000 * 2)
-			vStartTick = std::chrono::high_resolution_clock::now();
-
-		vBox.SetTransformMatrix(lb::MXMatrixRotateZ(rz) * lb::MXMatrixRotateY(ry) * lb::MXMatrixRotateX(rx));
-		lb::sColor4f vColor = { (rx + 1) / 2, (rx + 1) / 2, (rz + 1) / 2, 1.f };
-		vBox.SetColor(vColor);
+		//v.SetTransformMatrix(lb::MXMatrixRotateY((float)vTimeStamp / 1000.f));
 
 		lb::engine.EndFrame();
 	}

@@ -146,8 +146,14 @@
     <ClInclude Include="src\Dependencies\External\imgui\lb_imgui_impl.h" />
     <ClInclude Include="src\Dependencies\Matrix\Matrix.h" />
     <ClInclude Include="src\Dependencies\Matrix\Matrix_gfx_utils.h" />
+    <ClInclude Include="src\Dependencies\SotfP\OTF\CFF\CFF.h" />
+    <ClInclude Include="src\Dependencies\SotfP\OTF\CMAP\CMAP.h" />
+    <ClInclude Include="src\Dependencies\SotfP\OTF\OTF.h" />
+    <ClInclude Include="src\Dependencies\SotfP\SotfP.h" />
+    <ClInclude Include="src\Dependencies\SotfP\utils.h" />
     <ClInclude Include="src\DxIncludes.h" />
     <ClInclude Include="src\lbCamera\lbCamera.h" />
+    <ClInclude Include="src\lbCompounds\lbPaths\lbString2D.h" />
     <ClInclude Include="src\lbDrawable\lbDrawable.h" />
     <ClInclude Include="src\lbDrawable\lbPipeline\lbPipelineComponent.h" />
     <ClInclude Include="src\lbDrawable\lbPipeline\lbPipelineComponents\lbConstantBuffer.h" />
@@ -166,14 +172,19 @@
     <ClInclude Include="src\lbError\lbException.h" />
     <ClInclude Include="src\lbError\lbLogger.h" />
     <ClInclude Include="src\lbgfx.h" />
-    <ClInclude Include="src\lbPrimitives\lbBox.h" />
-    <ClInclude Include="src\lbPrimitives\lbDefaultPrimitive\lbDefaultPrimitive.h" />
-    <ClInclude Include="src\lbPrimitives\lbRect.h" />
+    <ClInclude Include="src\lbCompounds\lbPrimitives\lbBox.h" />
+    <ClInclude Include="src\lbCompounds\lbPrimitives\lbDefaultPrimitive\lbDefaultPrimitive.h" />
+    <ClInclude Include="src\lbCompounds\lbPaths\lbPath.h" />
+    <ClInclude Include="src\lbCompounds\lbPrimitives\lbRect.h" />
     <ClInclude Include="src\lbUtils\lbUtils.h" />
     <ClInclude Include="src\lbWindow\lbWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Dependencies\External\imgui\lb_imgui_impl.cpp" />
+    <ClCompile Include="src\Dependencies\SotfP\OTF\CFF\CFF.cpp" />
+    <ClCompile Include="src\Dependencies\SotfP\OTF\CMAP\CMAP.cpp" />
+    <ClCompile Include="src\Dependencies\SotfP\OTF\OTF.cpp" />
+    <ClCompile Include="src\Dependencies\SotfP\SotfP.cpp" />
     <ClCompile Include="src\Examples\ImGui_impl_example.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -187,6 +198,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\lbCamera\lbCamera.cpp" />
+    <ClCompile Include="src\lbCompounds\lbPaths\lbString2D.cpp" />
     <ClCompile Include="src\lbDrawable\lbPipeline\lbPipelineComponents\lbCustomBindable.cpp" />
     <ClCompile Include="src\lbDrawable\lbPipeline\lbPipelineComponents\lbDepthStencil.cpp" />
     <ClCompile Include="src\lbDrawable\lbPipeline\lbPipelineComponents\lbDrawRenderTopology.cpp" />
@@ -199,9 +211,10 @@
     <ClCompile Include="src\lbDrawable\lbPipeline\lbPipelineObject.cpp" />
     <ClCompile Include="src\lbError\lbException.cpp" />
     <ClCompile Include="src\lbError\lbLogger.cpp" />
-    <ClCompile Include="src\lbPrimitives\lbBox.cpp" />
-    <ClCompile Include="src\lbPrimitives\lbDefaultPrimitive\lbDefaultPrimitive.cpp" />
-    <ClCompile Include="src\lbPrimitives\lbRect.cpp" />
+    <ClCompile Include="src\lbCompounds\lbPrimitives\lbBox.cpp" />
+    <ClCompile Include="src\lbCompounds\lbPrimitives\lbDefaultPrimitive\lbDefaultPrimitive.cpp" />
+    <ClCompile Include="src\lbCompounds\lbPaths\lbPath.cpp" />
+    <ClCompile Include="src\lbCompounds\lbPrimitives\lbRect.cpp" />
     <ClCompile Include="src\lbUtils\lbUtils.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
   </ItemGroup>

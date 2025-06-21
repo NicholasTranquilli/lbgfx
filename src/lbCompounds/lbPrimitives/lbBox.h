@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../lbDrawable/lbPipeline/lbPipelineObject.h"
+#include "../../lbDrawable/lbPipeline/lbPipelineObject.h"
 #include "lbDefaultPrimitive/lbDefaultPrimitive.h"
 
 namespace lb

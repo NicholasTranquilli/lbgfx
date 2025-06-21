@@ -1,3 +1,5 @@
+#ifdef LB_USE_IMGUI
+
 #include "lb_imgui_impl.h"
 #include "../../../lbEngine.h"
 
@@ -42,3 +44,5 @@ LRESULT __stdcall lb::imgui_impl::ImWndProc(HWND hWnd, UINT msg, WPARAM wParam, 
 
 	return ::DefWindowProc(hWnd, msg, wParam, lParam);
 }
+
+#endif

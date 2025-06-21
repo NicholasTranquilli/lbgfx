@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef LB_USE_IMGUI
+
 #include "imgui.h"
 #include "imgui_impl_win32.h"
 #include "imgui_impl_dx11.h"
@@ -17,3 +19,5 @@ namespace lb
 		LRESULT __stdcall ImWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	}
 }
+
+#endif
